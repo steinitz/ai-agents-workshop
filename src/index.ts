@@ -18,7 +18,8 @@ import {ReplicateLLMProvider} from "./llm/ReplicateLLMProvider";
     allTools.forEach(tool => agent.addTool(tool));
 
     // User query that requires two tool calls
-    const userPrompt = "What's the Stockholm in  and convert 500 SEK to EUR?";
+    // const userPrompt = "What's the Stockholm in  and convert 500 SEK to EUR?";
+    const userPrompt = "What's the weather in the capital of Canada and convert 500 euro to the currency used in Canada?";
     const initialLLMResponse = await agent.callLLM(userPrompt);
 
     if (!initialLLMResponse.requires_tools) {
@@ -38,7 +39,7 @@ Tool Outputs:
 ${JSON.stringify(toolResults, null, 2)}
 
 Instructions:
-Based on the above outputs, provide a final and concise answer that integrates both the weather information and the currency conversion result. Do not suggest additional tool usage.
+Based on the above outputs, provide a final and concise answer that integrates both the weather information and the currency conversion result, convert the currency ISO code to the currency name. Do not suggest additional tool usage.
 `;
         const finalLLMResponse = await agent.callLLM(finalPrompt);
         console.log('Final answer:')
