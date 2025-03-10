@@ -59,13 +59,12 @@ ai-agents-workshop/
 ├── docs/
 │   └── ...             # Documentation files
 ├── src/
-│   ├── agents/
-│   │   └── ...         # AI agent implementations
-│   ├── memory/
-│   │   └── ...         # Long-term memory modules
-│   ├── tools/
-│   │   └── ...         # Tool integration modules
-│   └── index.ts        # Main entry point
+│   ├── agent/             # Core AI agent functionality
+│   ├── llm/               # Large Language Model (LLM) provider
+│   ├── memory/            # Long-term memory (under development)
+│   ├── providers/         # Different tools and external service integrations
+│   ├── examples/          # Various AI agent implementations
+│   ├── index.ts           # Main entry point
 ├── .gitignore
 ├── LICENSE
 ├── README.md
@@ -74,13 +73,60 @@ ai-agents-workshop/
 └── tsconfig.json
 ```
 
-# Available Scripts
+# 📖 Example Implementations
+This repository provides several practical examples of AI agents using different tools and memory capabilities.
 
-| Command | Description  |
-|---------|---|
-|   npm start      |  Runs the AI agent |
-|   npm run dev      |  Starts in development mode |
-|   npm test      |  Runs tests (if applicable) |
+## Web Search Agent (index.ts)
+Purpose: Uses AI and web search tools to find and summarize trends in AI.
+
+* Uses WebSearchTool: Queries the web for AI trends.
+* Integrates with ReplicateLLMProvider: Uses Meta's Llama-3-8B model for processing.
+* Processes Tool Responses: Analyzes and summarizes top search results.
+* JSON-Based Output: Ensures structured responses for easy parsing.
+
+📌 Example Use Case:
+A developer wants to fetch and summarize the latest trends in AI for 2025.
+
+## Hotel Information Agent (hotel.ts)
+Purpose: Provides updates on hotel room occupancy and local events.
+
+* Uses BookingTools & EventTools: Fetches hotel room status and upcoming events.
+* AI-Generated Summary: The LLM integrates tool outputs into a structured update.
+* Ideal for Hotel Managers: Automates the process of retrieving and summarizing occupancy and event data.
+
+📌 Example Use Case:
+A hotel manager asks: "What are the current room occupancy rates and upcoming local events?"
+
+## Task Management Agent (tasks.ts)
+The Task Management Agent provides AI-powered task management using Supabase as a database backend. This agent allows users to add, update, delete, and list tasks using natural language commands. It integrates tools via decorators, making them accessible for AI-driven task automation.
+
+* Automates task management via AI
+* Structured JSON responses for easy integration with other apps
+* Uses Supabase for persistence, ensuring task history is saved
+* Can be extended for multi-user or priority-based task handling
+
+📌 Example Use Case:
+A user requests: "Add a new task 'Buy shoes', mark task ID 10 as completed and list all tasks."
+
+## Weather & Currency Agent (weather.ts)
+Purpose: Fetches weather, currency conversion, and Wikipedia summaries.
+
+* Uses WeatherTools, CurrencyTools, and WikipediaTools.
+* Multi-Tool Execution: Fetches weather, converts currencies and summarizes Wikipedia entries.
+* AI Processes Data: Combines tool outputs into a coherent final answer.
+
+📌 Example Use Case:
+A user asks: "What’s the weather in Beijing, convert 500 EUR to CNY, and summarize Wikipedia’s article on China?"
+
+## Memory-Enhanced Agent (memory.ts) (In Development)
+Purpose: Implements a long-term memory system for AI agents.
+
+* Uses MemoryManager: Stores past interactions for context-aware responses.
+* Retrieves Context: Fetches relevant memories before responding.
+* Enhances AI Capabilities: Allows AI agents to "remember" previous conversations.
+
+📌 Example Use Case:
+A user asks a series of questions and the AI recalls past interactions.
 
 # 🎯 Roadmap
 
