@@ -1,5 +1,7 @@
 import Replicate from "replicate";
 import { LLMProvider } from "./LLMProvider";
+import {writeToLog} from "../utils/writeToLog";
+import {isValidJson} from "../utils/isValidJson";
 
 export class ReplicateLLMProvider implements LLMProvider {
     private replicate: Replicate;
@@ -11,10 +13,19 @@ export class ReplicateLLMProvider implements LLMProvider {
     }
 
     async callLLM(input: any): Promise<any> {
+        await writeToLog('llm_input.log', JSON.stringify(input))
+
         let fullResponse = "";
         for await (const event of this.replicate.stream(this.modelName, { input })) {
             fullResponse += event;
         }
-        return JSON.parse(fullResponse);
+
+        await writeToLog('llm_response.log', fullResponse)
+
+        if (isValidJson(fullResponse)) {
+            return JSON.parse(fullResponse);
+        } else {
+            return fullResponse;
+        }
     }
 }

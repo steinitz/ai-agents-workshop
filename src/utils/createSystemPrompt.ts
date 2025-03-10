@@ -13,7 +13,8 @@ export function createSystemPrompt(tools: Tool[]): SystemPrompt {
         capabilities: [
             "Use provided tools when needed to answer user queries",
             "Provide direct responses when tool usage is unnecessary",
-            "Plan efficient tool usage sequences"
+            "Plan efficient tool usage sequences",
+            "All responses are plain JSON nothing else"
         ],
         instructions: [
             "Only use tools when necessary",
