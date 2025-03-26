@@ -34,12 +34,6 @@ export class Agent {
         return await tool.call(...argValues);
     }
 
-
-    createSystemPrompt(): string {
-        const toolsArray = Object.values(this.tools);
-        return JSON.stringify(createSystemPrompt(toolsArray), null, 2);
-    }
-
     /**
      * Calls the LLM using the provided LLMProvider.
      *
@@ -47,7 +41,9 @@ export class Agent {
      * and passes it to the LLMProvider.
      */
     async callLLM(userPrompt: string): Promise<any> {
-        const systemPrompt = this.createSystemPrompt();
+        const toolsArray = Object.values(this.tools);
+        const systemPrompt = JSON.stringify(createSystemPrompt(toolsArray), null, 2);
+
         const promptTemplate = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
         const input = {
             prompt: userPrompt,

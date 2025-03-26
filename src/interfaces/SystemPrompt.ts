@@ -3,7 +3,6 @@ import {ToolParameter} from "./ToolParameter";
 /** Represents the structure of a system prompt passed to the LLM. */
 export interface SystemPrompt {
     role: string;
-    capabilities: string[];
     instructions: string[];
     tools: Array<{
         name: string;
