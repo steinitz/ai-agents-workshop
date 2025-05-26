@@ -1,11 +1,17 @@
 import { ToolDecorator } from "../decorators/ToolDecorator";
 import axios from "axios";
 import * as cheerio from "cheerio";
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const numberOfResults = process.env.NUMBER_OF_SEARCH_RESULTS
 
 // Ensure you have the API key set in your environment variables
 const SERPAPI_KEY = process.env.SERPAPI_KEY!;
-const SERPAPI_URL = "https://serpapi.com/search";
+const SERPAPI_URL = process.env.SERPAPI_URL ?? 'https://serpapi.com/search'
+
+// console.log({SERPAPI_KEY, SERPAPI_URL})
 
 export class WebSearchTool {
     @ToolDecorator({
@@ -23,9 +29,8 @@ Parameters:
                 params: {
                     q: query,
                     api_key: SERPAPI_KEY,
-                    num: 5, // Fetch top 5 results
-                },
-            });
+                    num: numberOfResults, // Fetch top results, the max number set in .env
+            }});
 
             const results = searchResponse.data.organic_results;
             if (!results || results.length === 0) {
@@ -34,7 +39,7 @@ Parameters:
 
             // Fetch summaries for all 5 search results
             let summaries: string[] = [];
-            for (const result of results.slice(0, 5)) { // Limit to top 5 results
+            for (const result of results.slice(0, numberOfResults)) { // Limit to top results
                 if (!result.link) continue; // Skip if no link is available
 
                 console.log(`Fetching content from: ${result.link}`);
@@ -57,7 +62,7 @@ Parameters:
      */
     private async summarizeWebPage(url: string): Promise<string> {
         try {
-            const response = await axios.get(url, { timeout: 8000 }); // Fetch webpage content
+            const response = await axios.get(url, { timeout: 13000 }); // Fetch webpage content
             const html = response.data; // Get raw HTML as string
             const $ = cheerio.load(html); // Load HTML into Cheerio
 

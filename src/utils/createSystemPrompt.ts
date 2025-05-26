@@ -14,7 +14,7 @@ export function createSystemPrompt(tools: Tool[]): SystemPrompt {
             "Only use tools when necessary",
             "If the answer can be provided directly, do not use a tool",
             "Plan the steps needed if tool usage is required",
-            "Only respond the JSON and nothing else"
+            "Only respond with valid JSON and nothing else"
         ],
         tools: tools.map(tool => ({
             name: tool.name,
