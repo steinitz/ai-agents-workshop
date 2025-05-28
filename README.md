@@ -30,15 +30,18 @@ REPLICATE_API_TOKEN=your_replicate_api_key
 SUPABASE_URL=your_supabase_project_url
 SUPABASE_SERVICE_KEY=your_supabase_service_key
 SERPAPI_KEY=your_serpapi_key
-```
+ERPAPI_URL=https://serpapi.com/search
+NUMBER_OF_SEARCH_RESULTS=3S```
 * REPLICATE_API_TOKEN – Required for AI model inference
 * SUPABASE_URL – Database URL for long-term memory
 * SUPABASE_SERVICE_KEY – API key for accessing Supabase services
 * SERPAPI_KEY – Required for AI-powered web search
+* SERPAPI_URL=https://serpapi.com/search
+* NUMBER_OF_SEARCH_RESULTS=3
 
-# Run the Project
+# Run the Agent
 ```shell
-npm start
+npm run agent
 ```
 
 # 📖 How It Works

@@ -1,8 +1,8 @@
 import { ToolDecorator } from "../decorators/ToolDecorator";
 import { createClient } from "@supabase/supabase-js";
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import 'dotenv/config'
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 
 // Make sure to set these environment variables in your project.
 const SUPABASE_URL = process.env.SUPABASE_URL!;

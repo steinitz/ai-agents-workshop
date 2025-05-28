@@ -1,9 +1,9 @@
 import { ToolDecorator } from "../decorators/ToolDecorator";
 import axios from "axios";
 import * as cheerio from "cheerio";
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import 'dotenv/config'
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 
 const numberOfResults = process.env.NUMBER_OF_SEARCH_RESULTS
 
@@ -11,7 +11,7 @@ const numberOfResults = process.env.NUMBER_OF_SEARCH_RESULTS
 const SERPAPI_KEY = process.env.SERPAPI_KEY!;
 const SERPAPI_URL = process.env.SERPAPI_URL ?? 'https://serpapi.com/search'
 
-// console.log({SERPAPI_KEY, SERPAPI_URL})
+console.log({SERPAPI_KEY, SERPAPI_URL, numberOfResults})
 
 export class WebSearchTool {
     @ToolDecorator({

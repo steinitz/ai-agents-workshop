@@ -3,9 +3,9 @@ import { ToolsManager } from "./agent/ToolsManager";
 import { Agent } from "./agent/Agent";
 import { ReplicateLLMProvider } from "./llm/ReplicateLLMProvider";
 import { isValidJson } from "./utils/isValidJson";
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import 'dotenv/config'
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 
 (async () => {
   const numberOFSearchResults = process.env.NUMBER_OF_SEARCH_RESULTS ?? 3

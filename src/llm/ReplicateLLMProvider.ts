@@ -2,9 +2,9 @@ import Replicate from "replicate";
 import { LLMProvider } from "./LLMProvider";
 import {writeToLog} from "../utils/writeToLog";
 import {isValidJson} from "../utils/isValidJson";
-import * as dotenv from 'dotenv'; 
-
-dotenv.config();
+import 'dotenv/config'
+// import * as dotenv from 'dotenv'; 
+// dotenv.config();
 
 export class ReplicateLLMProvider implements LLMProvider {
     private replicate: Replicate;
